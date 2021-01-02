@@ -27,7 +27,7 @@ namespace SVTracker.Commands
         [Aliases("transaction", "transact", "trans", "tran", "tr", "t")]
         public class ExampleExecutableGroup : BaseCommandModule
         {
-            [Command("create"), EnableBlacklist]
+            [Command("create")]
             [Description("Creates a new hook or logger")]
             [Aliases("add", "creat", "cre", "cr", "c")]
             [RequirePermissions(Permissions.Administrator)]
@@ -56,7 +56,7 @@ namespace SVTracker.Commands
                 }
             }
 
-            [Command("remove"), EnableBlacklist]
+            [Command("remove")]
             [Aliases("delete", "del", "d", "rem", "r")]
             [Description("Removes specific transaction hook/loggers")]
             [RequirePermissions(Permissions.Administrator)]
@@ -77,7 +77,7 @@ namespace SVTracker.Commands
                 }
             }
 
-            [Command("view"), EnableBlacklist]
+            [Command("view")]
             [Aliases("see", "s", "v")]
             [Description("Views all active hooks/loggers")]
             public async Task HookView(CommandContext ctx)

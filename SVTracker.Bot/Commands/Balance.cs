@@ -13,7 +13,7 @@ namespace SVTracker.Commands
     {
         System.Timers.Timer timer;
 
-        [Command("balance"), EnableBlacklist]
+        [Command("balance")]
         [Description("Gets the balance of a SV user. Can be a discord user (ex ping) or svid")]
         [Aliases("balan", "bal", "b")]
         [Priority(1)]
@@ -26,7 +26,7 @@ namespace SVTracker.Commands
             await ctx.Channel.SendMessageAsync($"{await user.GetUsernameAsync()} Balance: ¢{await user.GetBalanceAsync()}").ConfigureAwait(false);
         }
 
-        [Command("balance"), EnableBlacklist]
+        [Command("balance")]
         [Priority(0)]
         public async Task BalanceAll(CommandContext ctx, [RemainingText] string Inputname)
         {
@@ -60,7 +60,7 @@ namespace SVTracker.Commands
             }
         }
 
-        [Command("balanceloop"), EnableBlacklist]
+        [Command("balanceloop")]
         [Description("Loops through the balance of a SV entity (group or user) with a asigning interval between each message and a begining time. Can get SV user by pinging a discord user or using a SVID")]
         [Aliases("balloop", "baloop", "bloop", "ball", "bl")]
         [RequirePermissions(Permissions.Administrator)]
@@ -93,7 +93,7 @@ namespace SVTracker.Commands
             }
         }
 
-        [Command("balanceloop"), EnableBlacklist]
+        [Command("balanceloop")]
         [Priority(0)]
         public async Task BalanceLoopSV(CommandContext ctx,
             [Description("Interval between each experience check in minutes (decimals can be used).")] float interval,

@@ -78,60 +78,42 @@ namespace SVTracker
 
         private async Task CmdErroredHandler(CommandsNextExtension _, CommandErrorEventArgs e)
         {
-            try
+            if (e.Exception.Message == "Response failed: HTTP Code BadGateway")
             {
-                var failedChecks = ((ChecksFailedException)e.Exception).FailedChecks;
-                foreach (var failedCheck in failedChecks)
+                DiscordEmbedBuilder embed = new DiscordEmbedBuilder
                 {
-                    if (failedCheck is EnableBlacklist)
-                    {
-                        await e.Context.RespondAsync($"You are blacklisted!");
-                    }
-                    if (failedCheck is DeveloperOnly)
-                    {
-                        await e.Context.RespondAsync($"You are not a whitelisted developer!");
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                if (e.Exception.Message == "Response failed: HTTP Code BadGateway")
-                {
-                    DiscordEmbedBuilder embed = new DiscordEmbedBuilder
-                    {
-                        Title = $"SpookVooper Error",
-                        Description = $"SpookVooper cannot be reached",
-                        Color = DiscordColor.Red
-                    };
-                    await e.Context.RespondAsync(embed: embed).ConfigureAwait(false);
-                }
-                else if (e.Exception.Message == "Could not find a suitable overload for the command.")
-                {
-                    var json = string.Empty;
-                    using (var fs = File.OpenRead("config.json"))
-                    using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
-                        json = await sr.ReadToEndAsync().ConfigureAwait(false);
-
-                    ConfigJson ConfigJson = JsonConvert.DeserializeObject<ConfigJson>(json);
-
-                    DiscordEmbedBuilder embed = new DiscordEmbedBuilder
-                    {
-                        Title = $"The arguments for this command are invalid",
-                        Description = $"Please do '{ConfigJson.Prefix}help {e.Command.Name}' to see all needed arguments",
-                        Color = DiscordColor.Yellow
-                    };
-                    await e.Context.RespondAsync(embed: embed).ConfigureAwait(false);
-                }
-                else if (e.Exception.Message != "Specified command was not found.")
-                {
-                    DiscordEmbedBuilder embed = new DiscordEmbedBuilder
-                    {
-                        Title = $"SVTracker Error",
-                        Description = $"While attempting to run the command the following error has happened:\n{e.Exception.Message}",
-                        Color = DiscordColor.Red
-                    };
+                    Title = $"SpookVooper Error",
+                    Description = $"SpookVooper cannot be reached",
+                    Color = DiscordColor.Red
+                };
                 await e.Context.RespondAsync(embed: embed).ConfigureAwait(false);
-                }
+            }
+            else if (e.Exception.Message == "Could not find a suitable overload for the command.")
+            {
+                var json = string.Empty;
+                using (var fs = File.OpenRead("config.json"))
+                using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
+                    json = await sr.ReadToEndAsync().ConfigureAwait(false);
+
+                ConfigJson ConfigJson = JsonConvert.DeserializeObject<ConfigJson>(json);
+
+                DiscordEmbedBuilder embed = new DiscordEmbedBuilder
+                {
+                    Title = $"The arguments for this command are invalid",
+                    Description = $"Please do '{ConfigJson.Prefix}help {e.Command.Name}' to see all needed arguments",
+                    Color = DiscordColor.Yellow
+                };
+                await e.Context.RespondAsync(embed: embed).ConfigureAwait(false);
+            }
+            else if (e.Exception.Message != "Specified command was not found.")
+            {
+                DiscordEmbedBuilder embed = new DiscordEmbedBuilder
+                {
+                    Title = $"SVTracker Error",
+                    Description = $"While attempting to run the command the following error has happened:\n{e.Exception.Message}",
+                    Color = DiscordColor.Red
+                };
+                await e.Context.RespondAsync(embed: embed).ConfigureAwait(false);
             }
         }
 

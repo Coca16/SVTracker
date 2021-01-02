@@ -12,7 +12,7 @@ namespace SVTracker.Commands
     public class Experience : BaseCommandModule
     {
         Timer timer;
-        [Command("experience"), EnableBlacklist]
+        [Command("experience")]
         [Priority(1)]
         [Aliases("xp", "x")]
         public async Task ExperienceAll(CommandContext ctx, DiscordUser discordUser)
@@ -47,7 +47,7 @@ namespace SVTracker.Commands
             await ctx.RespondAsync(embed: embed).ConfigureAwait(false);
         }
 
-        [Command("experience"), EnableBlacklist]
+        [Command("experience")]
         [Priority(0)]
         public async Task ExperienceUser(CommandContext ctx, [RemainingText] string Inputname)
         {
@@ -122,7 +122,7 @@ namespace SVTracker.Commands
             }
         }
 
-        [Command("experienceloop"), EnableBlacklist]
+        [Command("experienceloop")]
         [Description("Loops through the experience of a SV user with a asigning interval between each message and a begining time")]
         [Aliases("xploop", "xpl", "xloop", "xl")]
         [RequirePermissions(Permissions.Administrator)]
@@ -172,7 +172,7 @@ namespace SVTracker.Commands
             }
         }
 
-        [Command("experienceloop"), EnableBlacklist]
+        [Command("experienceloop")]
         [Priority(0)]
         public async Task ExperienceSVLoop(CommandContext ctx,
             [Description("Interval between each experience check in minutes (decimals can be used).")] double interval,

@@ -120,7 +120,7 @@ namespace SVTracker.Commands
         }
         */
 
-        [Command("leaderboard"), EnableBlacklist]
+        [Command("leaderboard")]
         [Description("Lists 5 of people on the leaderboard")]
         [Aliases("leaderb", "lboard", "lb", "l")]
         public async Task Leaderboard(CommandContext ctx)
@@ -170,7 +170,7 @@ namespace SVTracker.Commands
             }
         }
 
-        [Command("leaderboardloop"), EnableBlacklist]
+        [Command("leaderboardloop")]
         [Description("Loops through top 5 in the leaderboard with a asigning interval between each message and a begining time")]
         [Aliases("lbloop", "ll", "lbl")]
         [RequirePermissions(Permissions.Administrator)]
