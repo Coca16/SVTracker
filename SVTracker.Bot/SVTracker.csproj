@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\Debug\netcoreapp5.0\**" />
+    <Compile Remove="CocaBot.Bot\**" />
+    <EmbeddedResource Remove="bin\Debug\netcoreapp5.0\**" />
+    <EmbeddedResource Remove="CocaBot.Bot\**" />
+    <None Remove="bin\Debug\netcoreapp5.0\**" />
+    <None Remove="CocaBot.Bot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\net5\config.json" />
+    <Content Include="bin\Debug\net5\SVArchive.deps.json" />
+    <Content Include="bin\Debug\net5\SVArchive.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\net5\SVArchive.runtimeconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net5\ConcurrentCollections.dll" />
+    <None Include="bin\Debug\net5\DSharpPlus.CommandsNext.dll" />
+    <None Include="bin\Debug\net5\DSharpPlus.dll" />
+    <None Include="bin\Debug\net5\DSharpPlus.Interactivity.dll" />
+    <None Include="bin\Debug\net5\Emzi0767.Common.dll" />
+    <None Include="bin\Debug\net5\HtmlAgilityPack.dll" />
+    <None Include="bin\Debug\net5\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <None Include="bin\Debug\net5\Microsoft.Extensions.DependencyInjection.dll" />
+    <None Include="bin\Debug\net5\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <None Include="bin\Debug\net5\Newtonsoft.Json.dll" />
+    <None Include="bin\Debug\net5\ref\SVArchive.dll" />
+    <None Include="bin\Debug\net5\SpookVooper.Api.dll" />
+    <None Include="bin\Debug\net5\SVArchive.dll" />
+    <None Include="bin\Debug\net5\SVArchive.exe" />
+    <None Include="bin\Debug\net5\SVArchive.pdb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DSharpPlus" Version="4.0.0-rc1" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.0.0-rc1" />
+    <PackageReference Include="DSharpPlus.Interactivity" Version="4.0.0-rc1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.26" />
+    <PackageReference Include="SpookVooper.Api" Version="1.3.13" />
+  </ItemGroup>
+
+</Project>
